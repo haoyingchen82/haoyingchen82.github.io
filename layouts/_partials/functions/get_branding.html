@@ -1,0 +1,4 @@
+{{/* Preserve the upstream contract; resolve the name from the author data. */}}
+{{ $profile := partial "functions/academic-profile" . }}
+{{ $hb := site.Params.hugoblox }}
+{{ return (dict "name" $profile.title "site_title" ($hb.seo.title | default $profile.title) "organization" ($hb.identity.organization | default $profile.title)) }}

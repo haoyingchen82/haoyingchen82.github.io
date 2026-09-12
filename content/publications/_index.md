@@ -1,12 +1,20 @@
 ---
 title: Publications
-cms_exclude: true
-
-# View.
-view: citation
-
-# Optional header image (relative to `static/media/` folder).
-banner:
-  caption: ''
-  image: ''
+summary: Publications and preprints.
+type: landing
+sections:
+  - block: academic-profile
+    id: publications-intro
+    content:
+      kind: heading
+      title: Publications
+      text: No public publications or preprints at this time.
+  - block: collection
+    id: publication-list
+    content:
+      filters:
+        folders: [publications]
+      count: 0
+    design:
+      view: citation
 ---

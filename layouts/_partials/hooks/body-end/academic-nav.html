@@ -1,0 +1,3 @@
+{{ with resources.Get "js/academic-nav.js" | minify | fingerprint }}
+<script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+{{ end }}

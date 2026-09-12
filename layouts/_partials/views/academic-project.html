@@ -1,0 +1,8 @@
+{{ $item := .item }}
+<article class="academic-project-entry">
+  <p class="academic-project-type">{{ $item.Params.project_type }} <span aria-hidden="true">·</span> {{ $item.Params.project_context }}</p>
+  {{ $level := cond (eq (.page.design.heading_level | default 3) 2) 2 3 }}
+  {{ printf "<h%d class=\"academic-project-title\">" $level | safeHTML }}<a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a>{{ printf "</h%d>" $level | safeHTML }}
+  <p>{{ $item.Params.summary }}</p>
+  <a class="academic-detail-link" href="{{ $item.RelPermalink }}">Read project overview <span aria-hidden="true">→</span></a>
+</article>

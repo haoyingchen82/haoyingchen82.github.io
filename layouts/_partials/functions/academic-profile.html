@@ -1,0 +1,10 @@
+{{/* Adapt the upstream author profile without embedding personal claims. */}}
+{{ $profile := partial "functions/get_author_profile" "me" }}
+{{ $institution := (index $profile.affiliations 0).name }}
+{{ $topics := delimit $profile.interests ", " ", and " }}
+{{ return (merge $profile (dict
+  "headline" (printf "%s at %s" $profile.role $institution)
+  "research_line" (printf "Interested in %s." $topics)
+  "introduction" (printf "I am an %s at %s, interested in %s." (lower $profile.role) $institution $topics)
+  "description" (printf "%s is an %s at %s interested in %s." $profile.title (lower $profile.role) $institution $topics)
+)) }}
