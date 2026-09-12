@@ -1,0 +1,7 @@
+{{/* Compact local footer; retain attribution and the upstream extension hook. */}}
+<footer class="academic-footer" data-pagefind-ignore>
+  {{ partial "functions/get_hook" (dict "hook" "footer-start" "context" .) }}
+  {{ $branding := partialCached "functions/get_branding" . "branding" }}
+  <p>© {{ now.Year }} {{ $branding.name }}.</p>
+  <p>Built with <a href="https://gohugo.io/">Hugo</a> and <a href="https://hugoblox.com/">HugoBlox</a>.</p>
+</footer>

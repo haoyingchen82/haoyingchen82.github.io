@@ -1,0 +1,55 @@
+{{ $page := .wcPage }}
+{{ $content := .wcBlock.content }}
+{{ $profile := partial "functions/academic-profile" $page }}
+<div class="academic-wrap academic-{{ $content.kind }}">
+  {{ if eq $content.kind "hero" }}
+    <div class="academic-hero-copy">
+      <h1>{{ $profile.title }}</h1>
+      <p class="academic-role">{{ $profile.headline }}</p>
+      <p class="academic-research-line">{{ $profile.research_line }}</p>
+      <nav class="academic-quick-links" aria-label="Academic links">
+        {{ range $profile.links }}
+          {{ if ne .label "Academic Email" }}<a href="{{ .url | safeURL }}">{{ .label }}</a>{{ end }}
+        {{ end }}
+      </nav>
+    </div>
+    {{ with $profile.avatar }}
+      {{ $photo := .Resize "394x webp q90" }}
+      <img class="academic-portrait" src="{{ $photo.RelPermalink }}" width="{{ $photo.Width }}" height="{{ $photo.Height }}" alt="Portrait of {{ $profile.title }}" fetchpriority="high" />
+    {{ end }}
+  {{ else if eq $content.kind "heading" }}
+    <h1>{{ $content.title }}</h1>
+    <p class="academic-page-description">{{ $content.text | default $page.Params.summary }}</p>
+  {{ else }}
+    <h2>{{ $content.title }}</h2>
+    {{ if eq $content.kind "bio" }}
+      <div class="academic-prose"><p>{{ $profile.introduction }}</p>{{ $profile.bio | $page.RenderString }}</div>
+    {{ else if eq $content.kind "interests" }}
+      <ol class="academic-interests-list">
+        {{ range $index, $interest := $profile.interests }}
+          <li><span class="academic-interest-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span><span>{{ $interest }}</span></li>
+        {{ end }}
+      </ol>
+    {{ else if eq $content.kind "education" }}
+      {{ range $profile.education }}
+        <div class="academic-education-entry">
+          <div>
+            <h3>{{ (index $profile.affiliations (.affiliation_index | default 0)).name }}</h3>
+            <p>{{ .degree }} in {{ .major }}</p>
+            <p class="academic-muted">{{ .school }}</p>
+          </div>
+          <div class="academic-education-dates">
+            <p>{{ time.Format "Jan 2006" .start }} – {{ time.Format "Jan 2006" .end }}</p>
+            {{ if .expected }}<p class="academic-muted">Expected {{ time.Format "Jan 2006" .end }}</p>{{ end }}
+          </div>
+        </div>
+      {{ end }}
+    {{ else if eq $content.kind "contact" }}
+      <dl class="academic-contact-list">
+        {{ range $profile.links }}
+          <div><dt>{{ .label }}</dt><dd><a href="{{ .url | safeURL }}">{{ .url | strings.TrimPrefix "mailto:" | strings.TrimPrefix "https://" }}</a></dd></div>
+        {{ end }}
+      </dl>
+    {{ end }}
+  {{ end }}
+</div>

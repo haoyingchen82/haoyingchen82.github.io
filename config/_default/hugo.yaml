@@ -3,10 +3,10 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-# Website name (set in params.yaml under hugoblox.branding.name)
+# Website name is derived from data/authors/me.yaml by the local branding helper.
 title: ''
 # Website URL
-baseURL: 'https://example.com/'
+baseURL: 'https://haoyingchen82.github.io/'
 
 ############################
 ## LANGUAGE
@@ -61,5 +61,8 @@ markup:
     lineNos: false
 security:
   _merge: deep
+  exec:
+    allow:
+      - '^((dart-)?sass|go|npx|babel|node|git|postcss|tailwindcss)$'
 sitemap:
   _merge: deep

@@ -1,22 +1,20 @@
 ---
-title: 'Projects'
-date: 2024-05-19
+title: Research
+summary: Selected projects and independent implementations related to spatial intelligence and 3D computer vision.
 type: landing
-
-# Page sections
 sections:
-  - block: collection
+  - block: academic-profile
+    id: research-intro
     content:
-      title: Selected Projects
-      text: I enjoy making things. Here are a selection of projects that I have worked on over the years.
+      kind: heading
+      title: Research
+  - block: collection
+    id: research-projects
+    content:
       filters:
-        folders:
-          - projects
+        folders: [projects]
+      count: 0
     design:
-      view: article-grid
-      fill_image: false
-      columns: 3
-      show_date: false
-      show_read_time: false
-      show_read_more: false
+      view: academic-project
+      heading_level: 2
 ---

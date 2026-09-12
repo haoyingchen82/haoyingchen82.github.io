@@ -1,0 +1,4 @@
+{{/* Upstream page fallbacks, with author-derived homepage metadata. */}}
+{{ $summary := .Params.summary | default .Params.description | default .Params.abstract | default .Summary }}
+{{ if .IsHome }}{{ $summary = (partial "functions/academic-profile" .).description }}{{ end }}
+{{ return $summary }}

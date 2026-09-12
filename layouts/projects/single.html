@@ -1,0 +1,11 @@
+{{ define "main" }}
+<main class="academic-wrap academic-project-page" data-pagefind-body>
+  <a class="academic-back-link" href="{{ "/projects/" | relURL }}">← Research</a>
+  <header>
+    <p class="academic-project-type">{{ .Params.project_type }} <span aria-hidden="true">·</span> {{ .Params.project_context }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="academic-page-description">{{ .Params.subtitle }}</p>
+  </header>
+  <div class="academic-prose">{{ .Content }}</div>
+</main>
+{{ end }}
